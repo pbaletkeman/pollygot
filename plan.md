@@ -686,17 +686,17 @@ Built distributed services communicating through synchronous REST APIs and async
 
 ### Technical
 
-[ ] Java Spring Boot API deployed
-[ ] Python FastAPI service deployed
-[ ] Kafka event processing working
-[ ] PostgreSQL persistent storage working
-[ ] MinIO object storage working
-[ ] Semantic search operational
-[ ] Kubernetes deployment operational
-[ ] Terraform provisioning operational
-[ ] GitHub Actions CI/CD operational
+- [ ] Java Spring Boot API deployed
+- [ ] Python FastAPI service deployed
+- [ ] Kafka event processing working
+- [ ] PostgreSQL persistent storage working
+- [ ] MinIO object storage working
+- [ ] Semantic search operational
+- [ ] Kubernetes deployment operational
+- [ ] Terraform provisioning operational
+- [ ] GitHub Actions CI/CD operational
 
 ### Portfolio
 
-[ ] Public GitHub repository
-[ ] Architecture diagrams
+- [ ] Public GitHub repository
+- [ ] Architecture diagrams
