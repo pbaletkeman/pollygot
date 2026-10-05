@@ -49,6 +49,7 @@
       - [Step 7 - Wait for Consumers to Finish](#step-7---wait-for-consumers-to-finish)
       - [Step 8 - Validate acceptance criteria](#step-8---validate-acceptance-criteria)
 
+```plaintext
 ├── MainApplication
 ├── Task
 ├── Producer
@@ -57,6 +58,7 @@
 ├── TaskIdGenerator
 ├── QueueManager
 └── Statistics
+```
 
 ---
 
