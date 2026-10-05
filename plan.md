@@ -4,7 +4,7 @@
   - [Goal](#goal)
     - [Build a portfolio project using both Java and Python that demonstrates](#build-a-portfolio-project-using-both-java-and-python-that-demonstrates)
       - [Project Architecture](#project-architecture)
-  - [Week 1: Producer Consumer Pattern](#week-1-producer-consumer-pattern)
+  - [Week 1: `Producer` Consumer Pattern](#week-1-producer-consumer-pattern)
     - [Learning - Week 1](#learning---week-1)
     - [Build - Week 1](#build---week-1)
     - [Acceptance Criteria - Week 1](#acceptance-criteria---week-1)
@@ -128,7 +128,7 @@ PostgreSQL, MinIO, Kubernetes, Terraform, and GitHub Actions."
 
 ---
 
-## Week 1: Producer Consumer Pattern
+## Week 1: `Producer` Consumer Pattern
 
 ### Learning - Week 1
 
