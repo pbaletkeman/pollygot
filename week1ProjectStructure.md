@@ -92,8 +92,11 @@ flowchart TD
 
 ```plaintext
 Task
+
     taskId
+
     payload
+
     createTimestamp
 ```
 
@@ -109,9 +112,13 @@ Provide tasks information
 
 ```plaintext
 CLASS Task
+
     STORE id
+
     STORE payload
+
     STORE creation time
+
 END CLASS
 ```
 
@@ -138,12 +145,15 @@ CLASS TaskIDGenerator
     STORE nextId
 
     METHOD getNextId
+
         atomically increment value
+
         RETURN value
+
     END METHOD
 
 END CLASS
-``
+
 Producer should create tasks.
 Generator should generate IDs.
 ```
@@ -155,8 +165,11 @@ Generator should generate IDs.
 #### State - Statistics
 
 ```plaintext
+
 tasksProduced
+
 tasksConsumed
+
 duplicatesDetected
 ```
 
@@ -171,12 +184,19 @@ Provide final report
 
 ```plaintext
 CLASS statistics
+
     STORE produced count
+
     STORE consumed count
+
     STORE duplicate count
+
     METHOD recordProduced
+
     METHOD recordConsumed
+
     METHOD recordDuplicate
+
 END CLASS
 ```
 
@@ -196,7 +216,9 @@ Collection of processed task IDs
 
 ```plaintext
 When consumer finishes:
+
     Was this task already processed?
+
         Yes -> Duplicate
         No -> record id
 ```
@@ -233,7 +255,11 @@ END CLASS
 #### Purpose - Hide queue implementation details
 
 Instead of:
-`Producer directly talks to queue`
+
+```plaintext
+Producer directly talks to queue
+```
+
 use:
 
 ```plaintext
@@ -336,8 +362,11 @@ END CLASS
 #### Dependencies - Consumer
 
 ```plaintext
+
 QueueManger
+
 TaskTracker
+
 Statistics
 ```
 
@@ -345,8 +374,11 @@ Statistics
 
 ```plaintext
 Take task
+
 Process task
+
 Record completion
+
 Track processed ID
 ```
 
