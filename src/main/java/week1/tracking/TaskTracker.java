@@ -1,15 +1,15 @@
-package week1.tracking;
+package src.main.java.week1.tracking;
 
 import java.util.List;
 import java.util.Objects;
 
-class TaskTracker {
+public final class TaskTracker {
     private List<Integer> processedIds;
 
-    public TaskTracker() {
+    TaskTracker() {
     }
 
-    public TaskTracker(List<Integer> processedIds) {
+    TaskTracker(List<Integer> processedIds) {
         this.processedIds = processedIds;
     }
 
@@ -26,9 +26,9 @@ class TaskTracker {
         return this;
     }
 
-    public ProcessEnum markProcessed(Integer id){
+    public ProcessEnum markProcessed(Integer id) {
         boolean found = processedIds.contains(id);
-        if (found){
+        if (found) {
             return ProcessEnum.DUPLICATE;
         } else {
             processedIds.add(id);
@@ -38,8 +38,9 @@ class TaskTracker {
 
     @Override
     public boolean equals(Object o) {
-        if (o == this)
+        if (o == this) {
             return true;
+        }
         if (!(o instanceof TaskTracker)) {
             return false;
         }
@@ -54,9 +55,7 @@ class TaskTracker {
 
     @Override
     public String toString() {
-        return "{" +
-            " processedIds='" + getProcessedIds() + "'" +
-            "}";
+        return "{ processedIds='" + getProcessedIds() + "'}";
     }
 
 

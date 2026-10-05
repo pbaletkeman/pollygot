@@ -1,8 +1,8 @@
-package week1.tracking;
+package src.main.java.week1.tracking;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class Statistics {
+ public final class Statistics {
 
     private AtomicInteger tasksProduced;
     private AtomicInteger tasksConsumed;
@@ -43,15 +43,16 @@ public class Statistics {
 
     @Override
     public boolean equals(Object o) {
-        if (o == this)
+        if (o == this) {
             return true;
+        }
         if (!(o instanceof Statistics)) {
             return false;
         }
         Statistics statistics = (Statistics) o;
-        return tasksProduced == statistics.tasksProduced &&
-            tasksConsumed == statistics.tasksConsumed &&
-            duplicatesDetected == statistics.duplicatesDetected;
+        return tasksProduced == statistics.tasksProduced
+            && tasksConsumed == statistics.tasksConsumed
+            && duplicatesDetected == statistics.duplicatesDetected;
     }
 
     @Override
@@ -61,11 +62,10 @@ public class Statistics {
 
     @Override
     public String toString() {
-        return "{" +
-            " tasksProduced='" + getTasksProduced() + "'" +
-            ", tasksConsumed='" + getTasksConsumed() + "'" +
-            ", duplicatesDetected='" + getDuplicatesDetected() + "'" +
-            "}";
+        return "{ tasksProduced='" + getTasksProduced() + "'"
+            + ", tasksConsumed='" + getTasksConsumed() + "'"
+            + ", duplicatesDetected='" + getDuplicatesDetected() + "'"
+            + "}";
     }
 
 }

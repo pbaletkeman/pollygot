@@ -1,9 +1,9 @@
-package week1.model;
+package src.main.java.week1.model;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class Task {
+public final class Task {
     private String taskId;
     private String payload;
     private LocalDateTime createTimestamp;
@@ -59,13 +59,16 @@ public class Task {
 
     @Override
     public boolean equals(Object o) {
-        if (o == this)
+        if (o == this) {
             return true;
+        }
         if (!(o instanceof Task)) {
             return false;
         }
         Task task = (Task) o;
-        return Objects.equals(taskId, task.taskId) && Objects.equals(payload, task.payload) && Objects.equals(createTimestamp, task.createTimestamp);
+        return Objects.equals(taskId, task.taskId)
+            && Objects.equals(payload, task.payload)
+            && Objects.equals(createTimestamp, task.createTimestamp);
     }
 
     @Override
@@ -75,11 +78,9 @@ public class Task {
 
     @Override
     public String toString() {
-        return "{" +
-            " taskId='" + getTaskId() + "'" +
-            ", payload='" + getPayload() + "'" +
-            ", createTimestamp='" + getCreateTimestamp() + "'" +
-            "}";
+        return "{" + " taskId='" + getTaskId() + "'"
+            + ", payload='" + getPayload() + "'"
+            + ", createTimestamp='" + getCreateTimestamp() + "'}";
     }
 
 }

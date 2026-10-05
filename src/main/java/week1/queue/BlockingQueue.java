@@ -1,4 +1,4 @@
-package week1.queue;
+package src.main.java.week1.queue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class BlockingQueue {
+public final class BlockingQueue {
     private static final int DEFAULT_SIZE = 1000;
     private final List<String> buffer = new ArrayList<>();
     private final Lock lock = new ReentrantLock();
@@ -27,8 +27,8 @@ public class BlockingQueue {
         this.capacity = DEFAULT_SIZE;
     }
 
-    public void put(String item) throws InterruptedException{
-        if (item == null){
+    public void put(String item) throws InterruptedException {
+        if (item == null) {
             throw new IllegalArgumentException("null cannot be added to queue");
         }
         lock.lock();
@@ -36,7 +36,7 @@ public class BlockingQueue {
             while (buffer.size() == this.capacity && !closed) {
                 notFull.await();
             }
-            if (closed){
+            if (closed) {
                 throw new IllegalStateException("queue is closed");
             }
             buffer.add(item);
@@ -46,13 +46,13 @@ public class BlockingQueue {
         }
     }
 
-    public String take() throws InterruptedException{
+    public String take() throws InterruptedException {
         lock.lock();
         try {
-            while (buffer.isEmpty() && !closed){
+            while (buffer.isEmpty() && !closed) {
                 notEmpty.await();
             }
-            if (!buffer.isEmpty()){
+            if (!buffer.isEmpty()) {
                 String item = buffer.remove(0);
                 notFull.signal();
                 return item;
@@ -68,7 +68,7 @@ public class BlockingQueue {
     public void close() {
         lock.lock();
         try {
-            if (closed){
+            if (closed) {
                 return;
             }
             closed = true;
