@@ -178,4 +178,104 @@ public class BlockingQueueTest {
 
         blockingQueue.close();
     }
+
+    @Test
+    void closed_queue_drains_remaining_items_before_returning_null() throws InterruptedException {
+
+        blockingQueue = new BlockingQueue<>(3);
+
+        CountDownLatch aboutToPut = new CountDownLatch(1);
+
+        CompletableFuture<Void> future = CompletableFuture.runAsync(() -> {
+            aboutToPut.countDown();           // fires immediately before the call
+            try {
+                blockingQueue.put("x");
+                blockingQueue.put("y");
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                throw new IllegalStateException(e);
+            }
+        }, queueExecutor);
+
+        // Latch proves the worker reached the call site; the sleep is a backstop
+        // covering the gap between countDown() and actually entering await().
+        aboutToPut.await();
+        Thread.sleep(100);
+
+        blockingQueue.close();
+        assertEquals("x", blockingQueue.take());
+        assertEquals("y", blockingQueue.take());
+
+        assertNull(blockingQueue.take());
+        assertNull(blockingQueue.take());
+    }
+
+
+    @Test
+    void put_null_IllegalArgumentException() throws InterruptedException {
+
+        blockingQueue = new BlockingQueue<>(1);
+
+        IllegalArgumentException ex = assertThrows(IllegalArgumentException.class,
+            () -> blockingQueue.put(null), "put(null) must be rejected");
+        assertEquals("null cannot be added to queue", ex.getMessage());
+
+        assertEquals(1, blockingQueue.getSize());
+        blockingQueue.put("A");
+        assertEquals("A", blockingQueue.take());
+        blockingQueue.close();
+    }
+
+    @Test
+    void size_zero_IllegalArgumentException() {
+
+        IllegalArgumentException ex = assertThrows(IllegalArgumentException.class,
+            () -> new BlockingQueue<>(0), "buffer size must be > 0");
+        assertEquals("buffer size must be > 0", ex.getMessage());
+    }
+
+    @Test
+    void size_negative_IllegalArgumentException() {
+
+        IllegalArgumentException ex = assertThrows(IllegalArgumentException.class,
+            () -> new BlockingQueue<>(-1), "buffer size must be > 0");
+        assertEquals("buffer size must be > 0", ex.getMessage());
+    }
+
+    @Test
+    void set_size_negative_IllegalArgumentException() {
+        blockingQueue = new BlockingQueue<>();
+
+        IllegalArgumentException ex = assertThrows(IllegalArgumentException.class,
+            () -> blockingQueue.setSize(-1), "buffer set size must be > 0");
+        assertEquals("buffer set size must be > 0", ex.getMessage());
+    }
+
+    @Test
+    void set_size_zero_IllegalArgumentException() {
+        blockingQueue = new BlockingQueue<>();
+
+        IllegalArgumentException ex = assertThrows(IllegalArgumentException.class,
+            () -> blockingQueue.setSize(0), "buffer set size must be > 0");
+        assertEquals("buffer set size must be > 0", ex.getMessage());
+    }
+
+    @Test
+    void set_size() {
+        blockingQueue = new BlockingQueue<>();
+        blockingQueue.setSize(10);
+        assertEquals(10, blockingQueue.getSize());
+    }
+
+    @Test
+    void set_size_constructor() {
+        blockingQueue = new BlockingQueue<>(1000);
+        assertEquals(1000, blockingQueue.getSize());
+    }
+
+    @Test
+    void default_constructor() {
+        blockingQueue = new BlockingQueue<>();
+        assertEquals(1000, blockingQueue.getSize());
+    }
 }

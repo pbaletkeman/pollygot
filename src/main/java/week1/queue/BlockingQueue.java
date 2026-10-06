@@ -12,32 +12,39 @@ public final class BlockingQueue<T> {
     private final Lock lock = new ReentrantLock();
     private final Condition notFull  = lock.newCondition();
     private final Condition notEmpty = lock.newCondition();
-    private final int capacity;
+    private int capacity;
     private boolean closed = false;
-    private int size;
 
     public int getSize() {
-        return size;
+        lock.lock();
+        try {
+            return capacity;
+        } finally {
+            lock.unlock();
+        }
     }
 
     public void setSize(int s) {
-        this.size = s;
+        if (s <= 0) {
+            throw new IllegalArgumentException("buffer set size must be > 0");
+        }
+        lock.lock();
+        try {
+            capacity = s;
+        } finally {
+            lock.unlock();
+        }
     }
 
     public BlockingQueue(int size) throws IllegalArgumentException {
-        if (size > 0) {
-            this.capacity = size;
-        } else {
+        if (size <= 0) {
             throw new IllegalArgumentException("buffer size must be > 0");
         }
+        this.capacity = size;
     }
 
     public BlockingQueue() {
-        if (this.size > 0) {
-            this.capacity = this.size;
-        } else {
-            this.capacity = DEFAULT_SIZE;
-        }
+        this(DEFAULT_SIZE);
     }
 
     public void put(T item) throws InterruptedException {
@@ -46,7 +53,7 @@ public final class BlockingQueue<T> {
         }
         lock.lock();
         try {
-            while (buffer.size() == this.capacity && !closed) {
+            while (buffer.size() >= this.capacity && !closed) {
                 notFull.await();
             }
             if (closed) {
