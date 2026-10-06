@@ -1,12 +1,13 @@
-package src.main.java.week1.tracking;
+package week1.tracking;
+
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
  public final class Statistics {
 
-    private AtomicInteger tasksProduced;
-    private AtomicInteger tasksConsumed;
-    private AtomicInteger duplicatesDetected;
+    private final AtomicInteger tasksProduced;
+    private final AtomicInteger tasksConsumed;
+    private final AtomicInteger duplicatesDetected;
 
     public Statistics() {
         this.tasksProduced = new AtomicInteger(0);
@@ -46,13 +47,12 @@ import java.util.concurrent.atomic.AtomicInteger;
         if (o == this) {
             return true;
         }
-        if (!(o instanceof Statistics)) {
+        if (!(o instanceof Statistics statistics)) {
             return false;
         }
-        Statistics statistics = (Statistics) o;
-        return tasksProduced == statistics.tasksProduced
-            && tasksConsumed == statistics.tasksConsumed
-            && duplicatesDetected == statistics.duplicatesDetected;
+        return tasksProduced.get() == statistics.tasksProduced.get()
+            && tasksConsumed.get() == statistics.tasksConsumed.get()
+            && duplicatesDetected.get() == statistics.duplicatesDetected.get();
     }
 
     @Override

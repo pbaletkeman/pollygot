@@ -1,4 +1,3 @@
-// CHECKSTYLE:OFF PackageName
 package week1;
 
 import org.junit.jupiter.api.Test;

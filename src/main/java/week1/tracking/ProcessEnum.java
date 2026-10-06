@@ -1,4 +1,4 @@
-package src.main.java.week1.tracking;
+package week1.tracking;
 
 /**
  * ProcessEnum

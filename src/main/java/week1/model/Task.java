@@ -1,4 +1,4 @@
-package src.main.java.week1.model;
+package week1.model;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -62,10 +62,9 @@ public final class Task {
         if (o == this) {
             return true;
         }
-        if (!(o instanceof Task)) {
+        if (!(o instanceof Task task)) {
             return false;
         }
-        Task task = (Task) o;
         return Objects.equals(taskId, task.taskId)
             && Objects.equals(payload, task.payload)
             && Objects.equals(createTimestamp, task.createTimestamp);
@@ -82,5 +81,4 @@ public final class Task {
             + ", payload='" + getPayload() + "'"
             + ", createTimestamp='" + getCreateTimestamp() + "'}";
     }
-
 }

@@ -1,10 +1,9 @@
-package src.main.java.week1.tracking;
+package week1.tracking;
 
-import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public final class TaskIdGenerator {
-    private AtomicInteger nextId;
+    private final AtomicInteger nextId;
 
     public AtomicInteger getNextId() {
         return this.nextId;
@@ -23,16 +22,15 @@ public final class TaskIdGenerator {
         if (o == this) {
             return true;
         }
-        if (!(o instanceof TaskIdGenerator)) {
+        if (!(o instanceof TaskIdGenerator taskIdGenerator)) {
             return false;
         }
-        TaskIdGenerator taskIdGenerator = (TaskIdGenerator) o;
-        return Objects.equals(nextId, taskIdGenerator.nextId);
+        return this.nextId.get() == taskIdGenerator.nextId.get();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(nextId);
+        return Integer.hashCode(nextId.get());
     }
 
     @Override

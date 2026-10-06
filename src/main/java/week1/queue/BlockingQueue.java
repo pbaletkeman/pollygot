@@ -1,4 +1,4 @@
-package src.main.java.week1.queue;
+package week1.queue;
 
 import java.util.ArrayList;
 import java.util.List;

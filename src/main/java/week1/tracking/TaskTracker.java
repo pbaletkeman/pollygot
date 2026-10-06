@@ -1,4 +1,4 @@
-package src.main.java.week1.tracking;
+package week1.tracking;
 
 import java.util.List;
 import java.util.Objects;
@@ -41,10 +41,9 @@ public final class TaskTracker {
         if (o == this) {
             return true;
         }
-        if (!(o instanceof TaskTracker)) {
+        if (!(o instanceof TaskTracker taskTracker)) {
             return false;
         }
-        TaskTracker taskTracker = (TaskTracker) o;
         return Objects.equals(processedIds, taskTracker.processedIds);
     }
 
@@ -57,7 +56,4 @@ public final class TaskTracker {
     public String toString() {
         return "{ processedIds='" + getProcessedIds() + "'}";
     }
-
-
-
 }

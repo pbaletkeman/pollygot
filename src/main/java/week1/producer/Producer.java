@@ -1,4 +1,4 @@
-package src.main.java.week1.producer;
+package week1.producer;
 
 public final class Producer {
 
