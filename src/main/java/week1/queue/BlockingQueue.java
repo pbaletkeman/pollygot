@@ -6,14 +6,23 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-public final class BlockingQueue {
+public final class BlockingQueue<T> {
     private static final int DEFAULT_SIZE = 1000;
-    private final List<String> buffer = new ArrayList<>();
+    private final List<T> buffer = new ArrayList<>();
     private final Lock lock = new ReentrantLock();
     private final Condition notFull  = lock.newCondition();
     private final Condition notEmpty = lock.newCondition();
     private final int capacity;
     private boolean closed = false;
+    private int size;
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int s) {
+        this.size = s;
+    }
 
     public BlockingQueue(int size) throws IllegalArgumentException {
         if (size > 0) {
@@ -24,10 +33,14 @@ public final class BlockingQueue {
     }
 
     public BlockingQueue() {
-        this.capacity = DEFAULT_SIZE;
+        if (this.size > 0) {
+            this.capacity = this.size;
+        } else {
+            this.capacity = DEFAULT_SIZE;
+        }
     }
 
-    public void put(String item) throws InterruptedException {
+    public void put(T item) throws InterruptedException {
         if (item == null) {
             throw new IllegalArgumentException("null cannot be added to queue");
         }
@@ -46,14 +59,14 @@ public final class BlockingQueue {
         }
     }
 
-    public String take() throws InterruptedException {
+    public T take() throws InterruptedException {
         lock.lock();
         try {
             while (buffer.isEmpty() && !closed) {
                 notEmpty.await();
             }
             if (!buffer.isEmpty()) {
-                String item = buffer.remove(0);
+                T item = buffer.remove(0);
                 notFull.signal();
                 return item;
 
