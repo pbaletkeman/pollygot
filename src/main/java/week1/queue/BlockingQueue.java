@@ -12,13 +12,13 @@ public final class BlockingQueue<T> {
     private final Lock lock = new ReentrantLock();
     private final Condition notFull  = lock.newCondition();
     private final Condition notEmpty = lock.newCondition();
-    private int capacity;
+    private int size;
     private boolean closed = false;
 
     public int getSize() {
         lock.lock();
         try {
-            return capacity;
+            return size;
         } finally {
             lock.unlock();
         }
@@ -30,7 +30,7 @@ public final class BlockingQueue<T> {
         }
         lock.lock();
         try {
-            capacity = s;
+            size = s;
         } finally {
             lock.unlock();
         }
@@ -40,7 +40,7 @@ public final class BlockingQueue<T> {
         if (size <= 0) {
             throw new IllegalArgumentException("buffer size must be > 0");
         }
-        this.capacity = size;
+        this.size = size;
     }
 
     public BlockingQueue() {
@@ -53,7 +53,7 @@ public final class BlockingQueue<T> {
         }
         lock.lock();
         try {
-            while (buffer.size() >= this.capacity && !closed) {
+            while (buffer.size() >= this.size && !closed) {
                 notFull.await();
             }
             if (closed) {
