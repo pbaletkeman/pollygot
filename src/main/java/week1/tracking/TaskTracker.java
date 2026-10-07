@@ -1,59 +1,24 @@
 package week1.tracking;
 
-import java.util.List;
-import java.util.Objects;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 public final class TaskTracker {
-    private List<Integer> processedIds;
+    private final Set<Integer> processedIds = ConcurrentHashMap.newKeySet();
 
-    TaskTracker() {
+    public TaskTracker() {
     }
 
-    TaskTracker(List<Integer> processedIds) {
-        this.processedIds = processedIds;
-    }
-
-    public List<Integer> getProcessedIds() {
-        return this.processedIds;
-    }
-
-    public void setProcessedIds(List<Integer> processedIds) {
-        this.processedIds = processedIds;
-    }
-
-    public TaskTracker processedIds(List<Integer> processedIds) {
-        setProcessedIds(processedIds);
-        return this;
+    public Set<Integer> getProcessedIds() {
+        return Set.copyOf(this.processedIds);
     }
 
     public ProcessEnum markProcessed(Integer id) {
-        boolean found = processedIds.contains(id);
-        if (found) {
-            return ProcessEnum.DUPLICATE;
-        } else {
-            processedIds.add(id);
-            return  ProcessEnum.SUCCESS;
-        }
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (o == this) {
-            return true;
-        }
-        if (!(o instanceof TaskTracker taskTracker)) {
-            return false;
-        }
-        return Objects.equals(processedIds, taskTracker.processedIds);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(processedIds);
+        return processedIds.add(id) ? ProcessEnum.SUCCESS : ProcessEnum.DUPLICATE;
     }
 
     @Override
     public String toString() {
-        return "{ processedIds='" + getProcessedIds() + "'}";
+        return "{ processedIds=" + processedIds + "}";
     }
 }

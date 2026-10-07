@@ -1,13 +1,13 @@
 package week1.tracking;
 
-import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
- public final class Statistics {
+public final class Statistics {
 
     private final AtomicInteger tasksProduced;
     private final AtomicInteger tasksConsumed;
     private final AtomicInteger duplicatesDetected;
+
 
     public Statistics() {
         this.tasksProduced = new AtomicInteger(0);
@@ -15,56 +15,35 @@ import java.util.concurrent.atomic.AtomicInteger;
         this.duplicatesDetected = new AtomicInteger(0);
     }
 
-    public AtomicInteger getTasksProduced() {
-        return this.tasksProduced;
+    public int getTasksProduced() {
+        return this.tasksProduced.get();
     }
 
-    public AtomicInteger getTasksConsumed() {
-        return this.tasksConsumed;
+    public int getTasksConsumed() {
+        return this.tasksConsumed.get();
     }
 
-    public AtomicInteger getDuplicatesDetected() {
-        return this.duplicatesDetected;
+    public int getDuplicatesDetected() {
+        return this.duplicatesDetected.get();
     }
 
-    public Statistics incDuplicatesDetected() {
+    public void incDuplicatesDetected() {
         this.duplicatesDetected.getAndIncrement();
-        return this;
     }
 
-    public Statistics incTasksProduced() {
+    public void incTasksProduced() {
         this.tasksProduced.getAndIncrement();
-        return this;
     }
 
-    public Statistics incTasksConsumed() {
+    public void incTasksConsumed() {
         this.tasksConsumed.getAndIncrement();
-        return this;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (o == this) {
-            return true;
-        }
-        if (!(o instanceof Statistics statistics)) {
-            return false;
-        }
-        return tasksProduced.get() == statistics.tasksProduced.get()
-            && tasksConsumed.get() == statistics.tasksConsumed.get()
-            && duplicatesDetected.get() == statistics.duplicatesDetected.get();
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(tasksProduced, tasksConsumed, duplicatesDetected);
     }
 
     @Override
     public String toString() {
-        return "{ tasksProduced='" + getTasksProduced() + "'"
-            + ", tasksConsumed='" + getTasksConsumed() + "'"
-            + ", duplicatesDetected='" + getDuplicatesDetected() + "'"
+        return "{ tasksProduced=" + getTasksProduced()
+            + ", tasksConsumed=" + getTasksConsumed()
+            + ", duplicatesDetected=" + getDuplicatesDetected()
             + "}";
     }
 

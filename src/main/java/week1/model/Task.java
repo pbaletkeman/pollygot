@@ -4,7 +4,9 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 public final class Task {
-    private String taskId;
+    public static final int SHUTDOWN = -1;
+
+    private int taskId;
     private String payload;
     private LocalDateTime createTimestamp;
 
@@ -12,17 +14,17 @@ public final class Task {
     public Task() {
     }
 
-    public Task(String taskId, String payload, LocalDateTime createTimestamp) {
+    public Task(int taskId, String payload, LocalDateTime createTimestamp) {
         this.taskId = taskId;
         this.payload = payload;
         this.createTimestamp = createTimestamp;
     }
 
-    public String getTaskId() {
+    public int getTaskId() {
         return this.taskId;
     }
 
-    public void setTaskId(String taskId) {
+    public void setTaskId(int taskId) {
         this.taskId = taskId;
     }
 
@@ -42,7 +44,7 @@ public final class Task {
         this.createTimestamp = createTimestamp;
     }
 
-    public Task taskId(String taskId) {
+    public Task taskId(int taskId) {
         setTaskId(taskId);
         return this;
     }
