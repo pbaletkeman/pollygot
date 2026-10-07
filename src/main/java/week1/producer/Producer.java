@@ -14,7 +14,7 @@ public final class Producer {
     private final Statistics statistics;
     private final QueueManager queueManager;
 
-    public Producer(Statistics statistics, TaskIdGenerator taskIdGenerator, QueueManager queueManager){
+    public Producer(QueueManager queueManager, TaskIdGenerator taskIdGenerator, Statistics statistics){
         this.statistics = Objects.requireNonNull(statistics);
         this.taskIdGenerator = Objects.requireNonNull(taskIdGenerator);
         this.queueManager = Objects.requireNonNull(queueManager);

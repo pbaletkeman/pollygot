@@ -9,3 +9,6 @@ gradle checkstyleTest
 
 gradle test --tests "week1.SimpleEqualityTest"
 gradle jacocoTestReport
+
+gradle compileJava
+gradle test

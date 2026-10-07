@@ -4,13 +4,21 @@ import week1.model.Task;
 
 public final class QueueManager {
 
-    private final week1.queue.BlockingQueue<Task> queue = new week1.queue.BlockingQueue<>();
+    private final BlockingQueue<Task> queue;
+
+    public QueueManager(int capacity) {
+        this.queue = new BlockingQueue<>(capacity);
+    }
+
+    public QueueManager() {
+        this.queue = new BlockingQueue<>();
+    }
 
     public void submitTask(Task task) throws InterruptedException {
-        queue.put(task);
+        this.queue.put(task);
     }
 
     public Task getTask() throws InterruptedException {
-        return queue.take();
+        return this.queue.take();
     }
 }
