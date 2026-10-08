@@ -69,6 +69,11 @@ jacocoTestReport {
     }
 }
 
+jacocoTestCoverageVerification {
+    violationRules {
+        rule { limit { counter = 'INSTRUCTION'; value = 0.70 } }
+    }
+}
 tasks.named('check') {
-    dependsOn jacocoTestReport
+    dependsOn jacocoTestCoverageVerification
 }
