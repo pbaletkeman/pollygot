@@ -20,10 +20,10 @@ public final class Consumer {
         this.statistics = Objects.requireNonNull(statistics);
     }
 
-    public void processTask(Task task)  {
+    public void processTask(Task task) {
         if (task != null) {
             ProcessEnum p = tracker.markProcessed(task.getTaskId());
-            if (p == ProcessEnum.SUCCESS){
+            if (p == ProcessEnum.SUCCESS) {
                 statistics.incTasksConsumed();
             } else {
                 statistics.incDuplicatesDetected();

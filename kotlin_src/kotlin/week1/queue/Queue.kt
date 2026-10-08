@@ -1,7 +1,9 @@
-package ca.letkeman
+package ca.letkeman.week1.queue
 
 import java.util.concurrent.locks.ReentrantLock
 import kotlin.concurrent.withLock
+
+import ca.letkeman.week1.task.Task
 
 const val DEFAULT_SIZE = 1000
 class BlockingQueue <T> {
@@ -77,5 +79,22 @@ class BlockingQueue <T> {
             lock.unlock()
         }
     }
+}
+
+class QueueManager {
+
+    private val queue: BlockingQueue<Task>
+
+    constructor (capacity: Int) {
+        this.queue = BlockingQueue<Task>(capacity)
+    }
+
+    constructor () {
+        this.queue = BlockingQueue<Task>()
+    }
+
+    fun submitTask(task: Task) = this.queue.put(task)
+
+    fun getTask(): Task? = this.queue.take()
 
 }

@@ -1,4 +1,4 @@
-package ca.letkeman
+package ca.letkeman.week1.tracking
 
 import java.util.concurrent.atomic.AtomicInteger
 import java.util.concurrent.locks.ReentrantLock

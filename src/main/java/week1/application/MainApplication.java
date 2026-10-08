@@ -12,7 +12,6 @@ import java.util.concurrent.TimeUnit;
 
 public final class MainApplication {
 
-
     private void doWork() throws InterruptedException {
         TaskIdGenerator taskIdGenerator = new TaskIdGenerator();
         Statistics statistics = new Statistics();
@@ -109,19 +108,19 @@ public final class MainApplication {
         c4Thread.join(TimeUnit.SECONDS.toMillis(30));
         c5Thread.join(TimeUnit.SECONDS.toMillis(30));
         if (c1Thread.isAlive()){
-            System.err.println("consumer-1 did not exit properly, missing posion pill?");
+            System.err.println("consumer-1 did not exit properly, missing poison pill?");
         }
         if (c2Thread.isAlive()){
-            System.err.println("consumer-2 did not exit properly, missing posion pill?");
+            System.err.println("consumer-2 did not exit properly, missing poison pill?");
         }
         if (c3Thread.isAlive()){
             System.err.println("consumer-3 did not exit properly, missing posion pill?");
         }
         if (c4Thread.isAlive()){
-            System.err.println("consumer-4 did not exit properly, missing posion pill?");
+            System.err.println("consumer-4 did not exit properly, missing poison pill?");
         }
         if (c5Thread.isAlive()){
-            System.err.println("consumer-5 did not exit properly, missing posion pill?");
+            System.err.println("consumer-5 did not exit properly, missing poison pill?");
         }
     }
 
