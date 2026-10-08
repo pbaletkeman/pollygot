@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 
 public final class MainApplication {
 
-    private void doWork() throws InterruptedException {
+    private String doWork() throws InterruptedException {
         TaskIdGenerator taskIdGenerator = new TaskIdGenerator();
         Statistics statistics = new Statistics();
         TaskTracker taskTracker = new TaskTracker();
@@ -122,10 +122,17 @@ public final class MainApplication {
         if (c5Thread.isAlive()){
             System.err.println("consumer-5 did not exit properly, missing poison pill?");
         }
+        return statistics.getReport();
     }
 
     static void main(String[] args) {
-
+        MainApplication mainApplication = new MainApplication();
+        try {
+            System.out.println(mainApplication.doWork());
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 }
 

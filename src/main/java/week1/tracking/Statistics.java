@@ -47,4 +47,11 @@ public final class Statistics {
             + "}";
     }
 
+    public String getReport() {
+        return "\n=======================\n Statistics\n=======================\n"
+        + "- Produced = " + getTasksProduced() + "\n"
+        + "- Consumed = " + getTasksConsumed() + "\n"
+        + "- Duplicates = " + getDuplicatesDetected() + "\n"
+        + "- Processed IDs = " + (getTasksConsumed() + getDuplicatesDetected()) + "\n-----------------------";
+    }
 }
