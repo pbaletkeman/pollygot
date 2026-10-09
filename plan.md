@@ -157,7 +157,7 @@ without using Kafka.
 - [x] No task loss
 - [x] No duplicate processing
 - [x] JUnit coverage greater than 70%
-- [ ] README explains race conditions
+- [x] README explains race conditions
 
 ### Interview Topics - Week 1
 
