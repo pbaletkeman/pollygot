@@ -1,27 +1,38 @@
 package week1.application;
 
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Objects;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.IntStream;
+
 import week1.consumer.Consumer;
+import week1.model.Task;
 import week1.producer.Producer;
 import week1.queue.QueueManager;
 import week1.tracking.Statistics;
 import week1.tracking.TaskIdGenerator;
 import week1.tracking.TaskTracker;
-import week1.model.Task;
-
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.concurrent.*;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.IntStream;
 
 public final class MainApplication {
 
-    String doWork() throws InterruptedException, ExecutionException {
+    public String doWork() throws InterruptedException, ExecutionException {
+        return doWork(new QueueManager(10000));
+    }
+
+    public String doWork(QueueManager queue) throws InterruptedException, ExecutionException {
+        Objects.requireNonNull(queue);
 
         TaskIdGenerator generator = new TaskIdGenerator();
         Statistics statistics = new Statistics();
         TaskTracker tracker = new TaskTracker();
-        QueueManager queue = new QueueManager(10000);
+        // QueueManager queue = new QueueManager(10000);
         Producer producer =  new Producer(queue, generator, statistics);
         Consumer consumer = new Consumer(queue, tracker, statistics);
 
@@ -29,10 +40,6 @@ public final class MainApplication {
         ExecutorService consumerPool = Executors.newFixedThreadPool(5, named("consumer"));
 
         try {
-            List<Future<?>> consumers = IntStream.range(0, 5)
-                .<Future<?>>mapToObj(i -> consumerPool.submit(consumerJob(consumer)))
-                .toList();
-
             List<Future<?>> producers = List.of(
                 producerPool.submit(producerJob(producer, 3333)),
                 producerPool.submit(producerJob(producer, 3333)),
@@ -51,8 +58,12 @@ public final class MainApplication {
                 queue.submitTask(new Task(Task.SHUTDOWN, "shutdown", LocalDateTime.now()));
             }
 
+            List<Future<?>> consumers = IntStream.range(0, 5)
+                .<Future<?>>mapToObj(i -> consumerPool.submit(consumerJob(consumer)))
+                .toList();
+
             consumerPool.shutdown();
-            if (!consumerPool.awaitTermination(30, TimeUnit.SECONDS)){
+            if (!consumerPool.awaitTermination(30, TimeUnit.SECONDS)) {
                 consumerPool.shutdown();
                 throw new IllegalStateException("consumer pool hung - missing poison pill");
             }

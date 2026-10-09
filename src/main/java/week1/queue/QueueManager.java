@@ -21,4 +21,8 @@ public final class QueueManager {
     public Task getTask() throws InterruptedException {
         return this.queue.take();
     }
+
+    public void close() {
+        this.queue.close();
+    }
 }

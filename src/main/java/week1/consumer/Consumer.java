@@ -14,7 +14,7 @@ public final class Consumer {
     private final TaskTracker tracker;
     private final Statistics statistics;
 
-    public Consumer (QueueManager queue, TaskTracker taskTracker, Statistics statistics) {
+    public Consumer(QueueManager queue, TaskTracker taskTracker, Statistics statistics) {
         this.queue = Objects.requireNonNull(queue);
         this.tracker = Objects.requireNonNull(taskTracker);
         this.statistics = Objects.requireNonNull(statistics);

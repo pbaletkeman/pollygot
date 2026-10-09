@@ -2,7 +2,6 @@ package week1;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import week1.tracking.Statistics;
 
@@ -26,7 +25,7 @@ public class StatisticsTest {
     }
 
     @Test
-    void test_increment(){
+    void test_increment() {
         Statistics statistics = new Statistics();
         statistics.incDuplicatesDetected();
         statistics.incTasksProduced();

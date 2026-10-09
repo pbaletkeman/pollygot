@@ -1,8 +1,7 @@
 package week1;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import week1.tracking.ProcessEnum;
 import week1.tracking.TaskTracker;

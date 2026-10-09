@@ -1,12 +1,12 @@
 package week1;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import week1.model.Task;
-
-import java.time.LocalDateTime;
 
 public class TaskTest {
 
@@ -60,7 +60,7 @@ public class TaskTest {
         Task task = new Task(0, "payload", LocalDateTime.now());
 
         // Reflexive: An object must equal itself
-        assertNotEquals( LocalDateTime.class, task);
+        assertNotEquals(LocalDateTime.class, task);
     }
 
     @Test
@@ -69,7 +69,7 @@ public class TaskTest {
 
         Task task = new Task(0, "payload", t);
 
-        assertEquals( "{ taskId='0', payload='payload', createTimestamp='" + t + "'}", task.toString());
+        assertEquals("{ taskId='0', payload='payload', createTimestamp='" + t + "'}", task.toString());
 
     }
 
@@ -95,13 +95,13 @@ public class TaskTest {
         Task task = new Task(0, "payload", n);
         Task t = task.taskId(1);
 
-        assertEquals( "{ taskId='1', payload='payload', createTimestamp='" + n + "'}", t.toString());
+        assertEquals("{ taskId='1', payload='payload', createTimestamp='" + n + "'}", t.toString());
 
         t = t.payload("new payload");
-        assertEquals( "{ taskId='1', payload='new payload', createTimestamp='" + n + "'}", t.toString());
+        assertEquals("{ taskId='1', payload='new payload', createTimestamp='" + n + "'}", t.toString());
 
         t = t.createTimestamp(LocalDateTime.MIN);
-        assertEquals( "{ taskId='1', payload='new payload', createTimestamp='" + LocalDateTime.MIN + "'}", t.toString());
+        assertEquals("{ taskId='1', payload='new payload', createTimestamp='" + LocalDateTime.MIN + "'}", t.toString());
 
     }
 }
