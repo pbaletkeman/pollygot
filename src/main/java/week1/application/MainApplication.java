@@ -32,7 +32,6 @@ public final class MainApplication {
         TaskIdGenerator generator = new TaskIdGenerator();
         Statistics statistics = new Statistics();
         TaskTracker tracker = new TaskTracker();
-        // QueueManager queue = new QueueManager(10000);
         Producer producer =  new Producer(queue, generator, statistics);
         Consumer consumer = new Consumer(queue, tracker, statistics);
 
@@ -40,6 +39,10 @@ public final class MainApplication {
         ExecutorService consumerPool = Executors.newFixedThreadPool(5, named("consumer"));
 
         try {
+            final List<Future<?>> consumers = IntStream.range(0, 5)
+                .<Future<?>>mapToObj(i -> consumerPool.submit(consumerJob(consumer)))
+                .toList();
+
             List<Future<?>> producers = List.of(
                 producerPool.submit(producerJob(producer, 3333)),
                 producerPool.submit(producerJob(producer, 3333)),
@@ -57,10 +60,6 @@ public final class MainApplication {
             for (int i = 0; i < 5; i++) {
                 queue.submitTask(new Task(Task.SHUTDOWN, "shutdown", LocalDateTime.now()));
             }
-
-            List<Future<?>> consumers = IntStream.range(0, 5)
-                .<Future<?>>mapToObj(i -> consumerPool.submit(consumerJob(consumer)))
-                .toList();
 
             consumerPool.shutdown();
             if (!consumerPool.awaitTermination(30, TimeUnit.SECONDS)) {

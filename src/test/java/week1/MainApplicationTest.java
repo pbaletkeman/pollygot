@@ -235,9 +235,9 @@ public class MainApplicationTest {
     }
 
     @Test
-    void terminates_on_its_own_poison_pills_worked() throws InterruptedException, ExecutionException {
+    void terminates_on_its_own_poison_pills_worked() throws Exception {
         LocalDateTime t1 = LocalDateTime.now();
-        newApp().doWork();
+        watchdog(35, () -> newApp().doWork());
         LocalDateTime t2 = LocalDateTime.now();
         long diff = Duration.between(t1, t2).toMillis();
         assertTrue(diff < 30000, "took too long to complete");

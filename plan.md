@@ -151,12 +151,12 @@ without using Kafka.
 
 ### Acceptance Criteria - Week 1
 
-- [ ] Start 3 producers
-- [ ] Start 5 consumers
-- [ ] Process 10,000 tasks
-- [ ] No task loss
-- [ ] No duplicate processing
-- [ ] JUnit coverage greater than 70%
+- [x] Start 3 producers
+- [x] Start 5 consumers
+- [x] Process 10,000 tasks
+- [x] No task loss
+- [x] No duplicate processing
+- [x] JUnit coverage greater than 70%
 - [ ] README explains race conditions
 
 ### Interview Topics - Week 1
