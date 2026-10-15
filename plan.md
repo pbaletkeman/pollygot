@@ -58,35 +58,37 @@
     - [Build - Week 12](#build---week-12)
       - [Authentication system](#authentication-system)
     - [Acceptance Criteria - Week 12](#acceptance-criteria---week-12)
-  - [Week 13: Python AI Features](#week-13-python-ai-features)
+  - [Week 13: CI/CD](#week-13-cicd)
     - [Learning - Week 13](#learning---week-13)
     - [Build - Week 13](#build---week-13)
-      - [Embedding generation service](#embedding-generation-service)
     - [Acceptance Criteria - Week 13](#acceptance-criteria---week-13)
-  - [Week 14: Semantic Search](#week-14-semantic-search)
-    - [Learning - Week 14](#learning---week-14)
-    - [Build - Week 14](#build---week-14)
-      - [Semantic search capability](#semantic-search-capability)
+  - [Week 14: Portfolio Finish](#week-14-portfolio-finish)
+    - [Documentation - Week 14](#documentation---week-14)
     - [Acceptance Criteria - Week 14](#acceptance-criteria---week-14)
-  - [Week 15: Kubernetes](#week-15-kubernetes)
-    - [Learning - Week 15](#learning---week-15)
-    - [Build - Week 15](#build---week-15)
-    - [Acceptance Criteria - Week 15](#acceptance-criteria---week-15)
-  - [Week 16: Terraform](#week-16-terraform)
-    - [Learning - Week 16](#learning---week-16)
-    - [Build - Week 16](#build---week-16)
-      - [Provision infrastructure](#provision-infrastructure)
-    - [Acceptance Criteria - Week 16](#acceptance-criteria---week-16)
-  - [Week 17: CI/CD](#week-17-cicd)
-    - [Learning - Week 17](#learning---week-17)
-    - [Build - Week 17](#build---week-17)
-    - [Acceptance Criteria - Week 17](#acceptance-criteria---week-17)
-  - [Week 18: Portfolio Finish](#week-18-portfolio-finish)
-    - [Documentation - Week 18](#documentation---week-18)
-    - [Acceptance Criteria - Week 18](#acceptance-criteria---week-18)
+  - [Optional Phase: Deferred Enhancements](#optional-phase-deferred-enhancements)
+    - [Optional Week 1: Embeddings and Advanced AI](#optional-week-1-embeddings-and-advanced-ai)
+      - [Learning - Optional Week 1](#learning---optional-week-1)
+      - [Build - Optional Week 1](#build---optional-week-1)
+        - [Embedding generation service](#embedding-generation-service)
+      - [Acceptance Criteria - Optional Week 1](#acceptance-criteria---optional-week-1)
+    - [Optional Week 2: Semantic Search](#optional-week-2-semantic-search)
+      - [Learning - Optional Week 2](#learning---optional-week-2)
+      - [Build - Optional Week 2](#build---optional-week-2)
+        - [Semantic search capability](#semantic-search-capability)
+      - [Acceptance Criteria - Optional Week 2](#acceptance-criteria---optional-week-2)
+    - [Optional Week 3: Kubernetes](#optional-week-3-kubernetes)
+      - [Learning - Optional Week 3](#learning---optional-week-3)
+      - [Build - Optional Week 3](#build---optional-week-3)
+      - [Acceptance Criteria - Optional Week 3](#acceptance-criteria---optional-week-3)
+    - [Optional Week 4: Terraform](#optional-week-4-terraform)
+      - [Learning - Optional Week 4](#learning---optional-week-4)
+      - [Build - Optional Week 4](#build---optional-week-4)
+        - [Provision infrastructure](#provision-infrastructure)
+      - [Acceptance Criteria - Optional Week 4](#acceptance-criteria---optional-week-4)
   - [Final Resume Bullet](#final-resume-bullet)
   - [Success Criteria for the Entire Project](#success-criteria-for-the-entire-project)
     - [Technical](#technical)
+    - [Optional Phase](#optional-phase)
     - [Portfolio](#portfolio)
 
 ## Goal
@@ -100,12 +102,12 @@
 - Kafka
 - PostgreSQL
 - Docker
-- Kubernetes
-- Terraform
+- Kubernetes (optional phase)
+- Terraform (optional phase)
 - GitHub Actions
 - Distributed Systems
 - Event-Driven Architecture
-- AI/LLM Fundamentals
+- AI/LLM Fundamentals (advanced AI, embeddings, and semantic search in the optional phase)
 
 #### Project Architecture
 
@@ -123,7 +125,14 @@ The goal is to be able to say:
 
 ```plaintext
 "Designed and implemented a polyglot AI platform using Java, Python, Kafka,
-PostgreSQL, MinIO, Kubernetes, Terraform, and GitHub Actions."
+PostgreSQL, MinIO, and GitHub Actions."
+```
+
+After the optional phase is completed:
+
+```plaintext
+"... using Java, Python, Kafka, PostgreSQL, MinIO, Kubernetes, Terraform,
+GitHub Actions, and AI-powered semantic search."
 ```
 
 ---
@@ -499,20 +508,80 @@ Search APIs.
 
 ---
 
-## Week 13: Python AI Features
+## Week 13: CI/CD
 
 ### Learning - Week 13
+
+> - GitHub Actions
+> - Docker build pipelines
+
+### Build - Week 13
+
+Pipeline stages:
+
+> - Build
+> - Test
+> - Package
+> - Docker Build
+
+### Acceptance Criteria - Week 13
+
+- [ ] Java tests run automatically
+- [ ] Python tests run automatically
+- [ ] Docker images built
+- [ ] Pull requests validated
+- [ ] Main branch protected
+
+---
+
+## Week 14: Portfolio Finish
+
+### Documentation - Week 14
+
+Create:
+
+> - README
+> - Architecture Diagram
+> - Sequence Diagram
+> - Deployment Guide
+> - API Reference
+
+Add:
+
+> - Spring Actuator
+> - Basic monitoring
+
+### Acceptance Criteria - Week 14
+
+- [ ] Complete README
+- [ ] Architecture diagram
+- [ ] Sequence diagrams
+- [ ] Deployment instructions
+- [ ] API documentation
+- [ ] Resume bullet completed
+
+---
+
+## Optional Phase: Deferred Enhancements
+
+Start this phase sometime (possibly months) after Week 14 is complete.
+
+It is not required for the core portfolio deliverable.
+
+### Optional Week 1: Embeddings and Advanced AI
+
+#### Learning - Optional Week 1
 
 Python libraries:
 
 > - sentence-transformers
 > - transformers
 
-### Build - Week 13
+#### Build - Optional Week 1
 
-#### Embedding generation service
+##### Embedding generation service
 
-### Acceptance Criteria - Week 13
+#### Acceptance Criteria - Optional Week 1
 
 - [ ] Generate embeddings
 - [ ] Persist embeddings
@@ -531,16 +600,16 @@ llama-2
 
 ---
 
-## Week 14: Semantic Search
+### Optional Week 2: Semantic Search
 
-### Learning - Week 14
+#### Learning - Optional Week 2
 
 > - Vector similarity
 > - Embeddings
 
-### Build - Week 14
+#### Build - Optional Week 2
 
-#### Semantic search capability
+##### Semantic search capability
 
 ```mermaid
 flowchart
@@ -549,7 +618,7 @@ flowchart
     C --> D[Ranked results]
 ```
 
-### Acceptance Criteria - Week 14
+#### Acceptance Criteria - Optional Week 2
 
 - [ ] Query embedding generated
 - [ ] Similarity calculation works
@@ -558,9 +627,9 @@ flowchart
 
 ---
 
-## Week 15: Kubernetes
+### Optional Week 3: Kubernetes
 
-### Learning - Week 15
+#### Learning - Optional Week 3
 
 > - Pods
 > - Deployments
@@ -568,7 +637,7 @@ flowchart
 > - ConfigMaps
 > - Secrets
 
-### Build - Week 15
+#### Build - Optional Week 3
 
 Deploy:
 
@@ -578,7 +647,7 @@ Deploy:
 > - Kafka
 > - MinIO
 
-### Acceptance Criteria - Week 15
+#### Acceptance Criteria - Optional Week 3
 
 - [ ] All services running in Kubernetes
 - [ ] Services communicate successfully
@@ -587,79 +656,25 @@ Deploy:
 
 ---
 
-## Week 16: Terraform
+### Optional Week 4: Terraform
 
-### Learning - Week 16
+#### Learning - Optional Week 4
 
 > - Infrastructure as Code
 > - Terraform modules
 > - Remote state
 
-### Build - Week 16
+#### Build - Optional Week 4
 
-#### Provision infrastructure
+##### Provision infrastructure
 
-### Acceptance Criteria - Week 16
+#### Acceptance Criteria - Optional Week 4
 
 - [ ] Infrastructure defined in code
 - [ ] terraform plan succeeds
 - [ ] terraform apply succeeds
 - [ ] Variables documented
 - [ ] Outputs documented
-
----
-
-## Week 17: CI/CD
-
-### Learning - Week 17
-
-> - GitHub Actions
-> - Docker build pipelines
-
-### Build - Week 17
-
-Pipeline stages:
-
-> - Build
-> - Test
-> - Package
-> - Docker Build
-
-### Acceptance Criteria - Week 17
-
-- [ ] Java tests run automatically
-- [ ] Python tests run automatically
-- [ ] Docker images built
-- [ ] Pull requests validated
-- [ ] Main branch protected
-
----
-
-## Week 18: Portfolio Finish
-
-### Documentation - Week 18
-
-Create:
-
-> - README
-> - Architecture Diagram
-> - Sequence Diagram
-> - Deployment Guide
-> - API Reference
-
-Add:
-
-> - Spring Actuator
-> - Basic monitoring
-
-### Acceptance Criteria - Week 18
-
-- [ ] Complete README
-- [ ] Architecture diagram
-- [ ] Sequence diagrams
-- [ ] Deployment instructions
-- [ ] API documentation
-- [ ] Resume bullet completed
 
 ---
 
@@ -672,13 +687,16 @@ Designed and implemented a polyglot AI Model Hub using:
 - Kafka-based event processing
 - PostgreSQL
 - MinIO object storage
-- semantic search
 - Docker
-- Kubernetes
-- Terraform
 - GitHub Actions CI/CD
 
-Built distributed services communicating through synchronous REST APIs and asynchronous Kafka events while applying concurrency patterns, cloud-native deployment practices, and AI-powered search capabilities.
+Built distributed services communicating through synchronous REST APIs and asynchronous Kafka events while applying concurrency patterns and cloud-native deployment practices.
+
+After the optional phase is complete, add:
+
+- embeddings and semantic search (advanced AI)
+- Kubernetes
+- Terraform
 
 ---
 
@@ -691,10 +709,14 @@ Built distributed services communicating through synchronous REST APIs and async
 - [ ] Kafka event processing working
 - [ ] PostgreSQL persistent storage working
 - [ ] MinIO object storage working
+- [ ] GitHub Actions CI/CD operational
+
+### Optional Phase
+
+- [ ] Embeddings and advanced AI operational
 - [ ] Semantic search operational
 - [ ] Kubernetes deployment operational
 - [ ] Terraform provisioning operational
-- [ ] GitHub Actions CI/CD operational
 
 ### Portfolio
 
